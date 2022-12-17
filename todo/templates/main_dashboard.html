@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block contain %}
+<div class="container">
+    <div class="container">
+        
+        <div class="row">
+          {% for i in tasks%}
+          <div class="col-sm">
+            <div class="card">
+                <h5 class="card-header">{{i.title}}</h5>
+                <div class="card-body">
+                  <p class="card-text">{{i.note}}.</p>
+                  <a href="task-details/{{i.slug}}" class="btn btn-primary">Get Details</a>
+                </div>
+              </div>
+          </div>
+          {%endfor%}
+        </div>
+        
+      </div>
+</div>
+{% endblock %}

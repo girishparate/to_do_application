@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block contain %}
+<div class="container">
+    {% for i in notificationn_list %}
+        <a href="read/{{i.id}}">
+        <div class="card">
+            <div {% if i.read %} class="card-body" {% else %} class="card-body p-3 mb-2 bg-secondary text-white" {%endif%}>
+            <strong>Reminder for</strong>
+            <p>{{i.to_do.title}}</p>
+            </div>
+        </div>
+        </a>
+      
+    {% endfor %}
+</div>
+{% endblock %}

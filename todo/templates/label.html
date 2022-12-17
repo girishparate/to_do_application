@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{%load static%}
+{% block contain %}
+<div class="container">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#label-edit">
+                Edit
+            </button></a>
+        </div>
+        <div>
+            <button type="button" class="btn btn-primary" data-toggle="modal" onclick="label_delete({{label_details.id}})">
+                Delete
+            </button></a>
+        </div>
+    </div>
+    <br>
+        <div class="row">
+          {% for i in to_do_list%}
+          <div class="col-sm">
+            <div class="card">
+                <h5 class="card-header">{{i.title}}</h5>
+                <div class="card-body">
+                  <p class="card-text">{{i.note}}.</p>
+                  <a href="/task-details/{{i.slug}}" class="btn btn-primary">Get Details</a>
+                </div>
+              </div>
+          </div>
+          {%endfor%}
+        </div>
+        
+      </div>
+  
+</div>
+
+ <!-- modal form for editing label -->
+ <div class="modal fade" id="label-edit" tabindex="-1" role="dialog" aria-labelledby="new-task-label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="label-edit-label">Edit New Task</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form enctype="multipart/form-data" id="label-edit-form">
+            <div class="form-group">
+                <div class="form-group">
+                    <label for="label-title">Label Title</label>
+                    <input type="text" class="form-control" id="label-title" name="label_title" value="{{label_details.label_title}}" required>
+                  </div>
+            </div>
+            <button type="submit" id="edit-submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+{% block js_files %}
+<script>
+    var label_id = '{{label_details.id}}';
+  </script>
+<script type="text/javascript" src="{% static 'js/label_detail.js' %}"></script>
+{% endblock %}

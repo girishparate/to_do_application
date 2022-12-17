@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{%load static%}
+{% block login-registration %}
+    <div class="container">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-6">
+                    <label for="first_name" class="form-label">First Name</label>
+                    <input type="text" class="form-control" id="first_name" name="first_name" required>
+                </div>
+                <div class="col-6">
+                    <label for="last_name" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" id="last_name" name="last_name" required>
+                </div>
+            </div>
+            <br>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <label for="pass" class="form-label">Password</label>
+                <input type="password" class="form-control" id="pass" name="password" required>
+            </div>
+            <div class="col-6">
+                <label for="confirm_pass" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="confirm_pass" required>
+            </div>
+        </div>
+        <br>
+        <button type="submit" id="registration_submit" disabled class="btn btn-success">Submit</button>
+        </form>
+    </div>
+{% endblock %}
+{% block js_files %}
+<script type="text/javascript" src="{% static 'js/registration.js' %}"></script>
+{% endblock %}
