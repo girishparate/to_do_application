@@ -4,4 +4,3 @@ from .models import *
 
 admin.site.register(ToDo)
 admin.site.register(Label)
-admin.site.register(Collaborator)

@@ -8,4 +8,10 @@ urlpatterns = [
 
     path('logout', Logout.as_view(), name='logout'),
 
+    path('forgot-password', ForgotPassword.as_view(), name='forgot-password'),
+
+    path('activate/<uid64>/<token>/', ResetPassword.as_view(), name='activate'),
+
+    path('password-reset/<email>', ResetPassword.as_view(), name='password-reset')
+
 ]

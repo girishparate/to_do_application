@@ -11,8 +11,9 @@ class NotificationPage(APIView):
 
     def get(self, request):
         notifications = Notification.objects.filter(user=request.user)
-        data = {'notificationn_list': notifications}
+        data = {'notificationn_list': notifications, "title": "My Notification"}
         return Response(data)
+
 
 class NotificationRead(APIView):
     def get(self, request, pk):

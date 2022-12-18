@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
 
+
 class Label(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     label_title = models.CharField(max_length=100, unique=True)
@@ -14,7 +15,7 @@ class Label(models.Model):
 class ToDo(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     label = models.ManyToManyField(Label)
-    title = models.CharField(max_length=500)
+    title = models.CharField(max_length=500, unique=True)
     note = models.TextField(null=True)
     reminder = models.BooleanField(default=False)
     reminds_on = models.DateTimeField(null=True)
@@ -26,11 +27,3 @@ class ToDo(models.Model):
 
     def __str__(self):
         return self.title
-
-
-class Collaborator(models.Model):
-    task = models.ForeignKey(ToDo, on_delete=models.CASCADE)
-    email = models.EmailField()
-
-    def __str__(self):
-        return self.email

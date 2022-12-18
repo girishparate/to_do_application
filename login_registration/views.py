@@ -11,7 +11,6 @@ from django.contrib.auth.tokens import default_token_generator
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes
-from django.contrib.auth import get_user_model
 from django.shortcuts import redirect
 from django.conf import settings
 
@@ -76,7 +75,8 @@ class ForgotPassword(APIView):
     template_name = 'forgot_password.html'
 
     def get(self, request):
-        return Response()
+        data = {"title": "Forgot Password"}
+        return Response(data)
 
     def post(self, request):
         email = request.POST.get('email')
@@ -124,16 +124,16 @@ class ResetPassword(APIView):
             user = None
 
         if user is not None and default_token_generator.check_token(user, token):
-            return Response({'user': user})
+            data = {"title": "Password Reset", 'user': user}
+            return Response(data)
 
         # Else display error    
         else:
             messages.error(request, 'Activation link is invalid.')
             return redirect('/')
 
-    def post(self, request):
+    def post(self, request, email):
         # Get all parameters
-        email = request.POST['email']
         password = request.POST['password']
         confirm_password = request.POST['confirm_password']
 
